@@ -21,7 +21,7 @@ class MatheoUserBundle extends Bundle
         // https://github.com/juanmf/UserBundle
         $mappings = [
             // customize the mappings to disable the 'roles' field
-            realpath(__DIR__ . '/Resources/config/doctrine') => 'FOS\UserBundle\Model',
+            realpath(__DIR__ . '/Resources/config/doctrine/model') => 'FOS\UserBundle\Model',
         ];
 
         $container->addCompilerPass(

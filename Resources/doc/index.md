@@ -85,7 +85,7 @@ to make it easier to create your entity. Here is how you use it:
 
 > When you extend from the mapped superclass provided by the bundle, don't
 > redefine the mapping for the other fields as it is provided by the bundle.
-> Perhaps you can do it customizing `Resources/config/doctrine/User.orm.xml`.
+> Perhaps you can do it customizing `Resources/config/doctrine/model/User.orm.xml`.
 
 Your `User` class can live inside any bundle in your application. For example,
 if you work at "Acme" company, then you might create a bundle called `AcmeUserBundle`

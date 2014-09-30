@@ -13,6 +13,8 @@ The bulk of the documentation is stored in the `Resources/doc/index.md`
 
 [Read the Documentation for master](https://github.com/matheo/UserBundle/blob/master/Resources/doc/index.md)
 
+[Configuration Examples](https://github.com/matheo/UserBundle/tree/master/Resources/config/examples)
+
 Installation
 ------------
 

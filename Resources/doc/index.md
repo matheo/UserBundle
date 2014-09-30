@@ -45,6 +45,19 @@ $ php composer.phar require matheo/user-bundle '~0.1@dev'
 
 Composer will install the bundle to your project's `vendor/matheo` directory.
 
+Packagist may not have the latest development copy of this bundle, in that case,
+you may add the repository to your composer.json:
+
+```
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/matheo/UserBundle"
+    }
+],
+```
+
+
 ### Step 2: Enable the bundles
 
 Enable the bundles in the kernel:
@@ -362,6 +375,9 @@ and login at `http://app.com/app_dev.php/login` with `admin`/`admin`!
 Now that you have completed the basic installation and configuration of this
 UserBundle, you are ready to learn about more advanced features and usages
 of the FOSUserBundle.
+
+Later the integration with the HWIOAuthBundle will be covered,
+in the meanwhile you can check config the examples at [Resources/config/examples](https://github.com/matheo/UserBundle/tree/master/Resources/config/examples).
 
 The following documents are available:
 

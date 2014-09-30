@@ -22,7 +22,7 @@
         "stof/doctrine-extensions-bundle": "~1.1@dev"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "~2.2.*@dev"
+        "doctrine/doctrine-fixtures-bundle": "2.2.*@dev"
     },
     "suggest": {
         "hwi/oauth-bundle": "0.4.*@dev Provides OAuth integration with major social services"

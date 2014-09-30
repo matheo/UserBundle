@@ -11,8 +11,8 @@
 
     <services>
 
-        <service id="matheo.connect.user_provider" class="%matheo.connect.user_provider.class%" parent="hwi_oauth.user.provider.fosub_bridge">
-        </service>
+        <!--service id="matheo.connect.user_provider" class="%matheo.connect.user_provider.class%" parent="hwi_oauth.user.provider.fosub_bridge">
+        </service-->
 
         <service id="matheo.user.access.role_hierarchy" class="%matheo.user.access.role_hierarchy.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />

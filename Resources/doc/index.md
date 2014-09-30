@@ -23,19 +23,26 @@ Installation is a quick 7 step process:
 2. Enable the Bundle
 3. Customize your User class (optional)
 4. Configure your application's security.yml
-5. Configure this UserBundle
+5. Configure FOSUserBundle
 6. Import the routing
 7. Update your database schema
 
 ### Step 1: Download this UserBundle using composer
 
-Until this Bundle is released, you need to edit your `composer.json` minimum-stability:
+Until this Bundle is released, you need to edit your composer.json `minimum-stability`:
 
 ```
 "minimum-stability": "dev"
 ```
 
-And then perform the installation:
+or include the bundle dependencies on your composer.json:
+
+```
+"friendsofsymfony/user-bundle": "~2.0@dev",
+"stof/doctrine-extensions-bundle": "~1.1@dev"
+```
+Also, you need to update the `doctrine/doctrine-bundle` to `~1.3@dev`.
+Then you can perform the installation:
 
 ``` bash
 $ php composer.phar require matheo/user-bundle '~0.1@dev'
@@ -43,9 +50,9 @@ $ php composer.phar require matheo/user-bundle '~0.1@dev'
 
 Composer will install the bundle to your project's `vendor/matheo` directory.
 
-### Step 2: Enable the bundle
+### Step 2: Enable the bundles
 
-Enable the bundle in the kernel:
+Enable the bundles in the kernel:
 
 ``` php
 <?php
@@ -55,6 +62,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
+        new FOS\UserBundle\FOSUserBundle(),
         new Matheo\UserBundle\MatheoUserBundle(),
     );
 }
@@ -213,7 +221,7 @@ security:
 ```
 
 Under the `providers` section, you are making the bundle's packaged user provider
-service available via the alias `fmatheo_userbundle`. In this case, the repository
+service available via the alias `matheo_userbundle`. In this case, the repository
 of the User class is used as service provider.
 
 Next, take a look at and examine the `firewalls` section. Here we have declared a
@@ -250,7 +258,7 @@ security component [documentation](http://symfony.com/doc/current/book/security.
 > this UserBundle is configured in. You will use this in the next step.
 
 
-### Step 5: Configure this UserBundle
+### Step 5: Configure FOSUserBundle
 
 Now that you have properly configured your application's `security.yml` to work
 with this UserBundle, the next step is to configure the bundle to work with

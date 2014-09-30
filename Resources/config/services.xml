@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="matheo.connect.user_provider.class">Matheo\UserBundle\Connect\UserProvider</parameter>
+        <parameter key="matheo.user.access.role_hierarchy.class">Matheo\UserBundle\Role\RoleHierarchy</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="matheo.connect.user_provider" class="%matheo.connect.user_provider.class%" parent="hwi_oauth.user.provider.fosub_bridge">
+        </service>
+
+        <service id="matheo.user.access.role_hierarchy" class="%matheo.user.access.role_hierarchy.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
+        <service id="matheo.user.access.role_hierarchy_voter" class="%security.access.role_hierarchy_voter.class%">
+            <argument type="service" id="matheo.user.access.role_hierarchy" />
+            <tag name="security.voter" priority="245" />
+        </service>
+
+        <service id="security.access.expression_voter" class="%security.access.expression_voter.class%">
+            <argument type="service" id="security.expression_language" />
+            <argument type="service" id="security.authentication.trust_resolver" />
+            <argument type="service" id="matheo.user.access.role_hierarchy" on-invalid="null" />
+            <tag name="security.voter" priority="245" />
+        </service>
+
+    </services>
+
+</container>

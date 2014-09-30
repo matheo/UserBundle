@@ -13,7 +13,7 @@ a database, then you're in the right place.
 
 ## Prerequisites
 
-This version of the bundle requires Symfony 2.4+ and the Doctrine ORM.
+This version of the bundle requires Symfony 2.4+, Doctrine ORM and PHP 5.4+ (Traits).
 
 ## Installation
 
@@ -28,6 +28,14 @@ Installation is a quick 7 step process:
 7. Update your database schema
 
 ### Step 1: Download this UserBundle using composer
+
+Until this Bundle is released, you need to edit your `composer.json` minimum-stability:
+
+```
+"minimum-stability": "dev"
+```
+
+And then perform the installation:
 
 ``` bash
 $ php composer.phar require matheo/user-bundle '~0.1@dev'
@@ -69,7 +77,7 @@ to make it easier to create your entity. Here is how you use it:
 
 > When you extend from the mapped superclass provided by the bundle, don't
 > redefine the mapping for the other fields as it is provided by the bundle.
-> Perhaps you can do it customizing `Resources/config/doctrine/model/User.orm.xml`.
+> Perhaps you can do it customizing `Resources/config/doctrine/User.orm.xml`.
 
 Your `User` class can live inside any bundle in your application. For example,
 if you work at "Acme" company, then you might create a bundle called `AcmeUserBundle`

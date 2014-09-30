@@ -1,0 +1,12 @@
+
+hwi_oauth_service_redirect:
+    pattern: /connect/{service}
+    defaults: { _controller: HWIOAuthBundle:Connect:redirectToService }
+
+hwi_oauth_connect_service:
+    pattern:  /connect/auth-{service}/
+    defaults: { _controller: HWIOAuthBundle:Connect:connectService }
+
+hwi_oauth_connect_registration:
+    pattern: /register/{key}
+    defaults: { _controller: HWIOAuthBundle:Connect:registration }

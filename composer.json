@@ -17,12 +17,15 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=5.3.2",
-        "friendsofsymfony/user-bundle": "2.0.0-alpha1",
-        "stof/doctrine-extensions-bundle": "~1.1"
+        "php": ">=5.4.0",
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "stof/doctrine-extensions-bundle": "~1.1@dev"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "~2.2"
+        "doctrine/doctrine-fixtures-bundle": "~2.2.*@dev"
+    },
+    "suggest": {
+        "hwi/oauth-bundle": "0.4.*@dev Provides OAuth integration with major social services"
     },
     "autoload": {
         "psr-4": { "Matheo\\UserBundle\\": "" }

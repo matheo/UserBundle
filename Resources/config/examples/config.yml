@@ -1,0 +1,100 @@
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        mappings:
+            FOSUserBundle: ~
+            MatheoUserBundle: ~
+            gedmo_tree:
+                type: annotation
+                prefix: Gedmo\Tree\Entity
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
+                alias: GedmoTree # this one is optional and will default to the name set for the mapping
+                is_bundle: false
+
+stof_doctrine_extensions:
+    default_locale: "%locale%"
+    orm:
+        default:
+            tree: true
+
+# Users
+fos_user:
+    db_driver: orm
+    #model_manager_name: non_default
+    firewall_name: main
+    user_class: Matheo\UserBundle\Entity\User
+    group:
+        group_class: Matheo\UserBundle\Entity\Group
+    #service:
+    #    user_manager: fos_user.user_manager.default
+    #    mailer: fos_user.mailer.twig_swift
+    #registration:
+    #    confirmation:
+    #        enabled: true
+    #        from_email:
+    #            address: noreply@domain.com # params
+    #            sender_name: App Registry # params
+    #resetting:
+    #    email:
+    #        #template: MatheoUserBundle:Email:reset.email.html.twig
+    #        from_email:
+    #            address: noreply@domain.com # params
+    #            sender_name: App Mailer # params
+
+# OAuth
+hwi_oauth:
+    firewall_name: main
+    use_referer: true
+    resource_owners:
+
+        # https://developers.facebook.com/
+        facebook:
+            type:                facebook
+            client_id:           %facebook_client_id%
+            client_secret:       %facebook_client_secret%
+            scope:               "email"
+            infos_url:           "https://graph.facebook.com/me?fields=username,name,email,picture.type(square)"
+            paths:
+                nickname:        username
+                realname:        name
+                email:           email
+                profilepicture:  picture.data.url
+            options:
+                display:         popup
+
+        # https://console.developers.google.com/
+        google:
+            type:                google
+            client_id:           %google_client_id%
+            client_secret:       %google_client_secret%
+            scope:               "email profile"
+            paths:
+                realname:        name
+                email:           email
+                profilepicture:  picture
+            options:
+                display:         popup
+
+    fosub:
+        # try 30 times to check if a username is available (foo, foo1, foo2 etc)
+        username_iterations: 30
+        # mapping between resource owners (see below) and properties
+        properties:
+            facebook: facebookUid
+            google: gplusUid
+    connect: ~
+
+services:
+    hwi_oauth.user.provider.entity:
+        class: HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider

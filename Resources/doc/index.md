@@ -25,7 +25,7 @@ Installation is a quick 7 step process:
 4. Configure your application's security.yml
 5. Configure FOSUserBundle
 6. Import the routing
-7. Update your database schema
+7. Update your database
 
 ### Step 1: Download this UserBundle using composer
 
@@ -332,7 +332,7 @@ Or if you prefer XML:
 > resetting of the password), you must activate and configure the SwiftmailerBundle.
 
 
-### Step 7: Update your database schema
+### Step 7: Update your database
 
 Now that the bundle is configured, the last thing you need to do is update your
 database schema because you have added a new entity, the `User` class which you
@@ -342,7 +342,13 @@ created in Step 4.
 $ php app/console doctrine:schema:update --force
 ```
 
-You now can login at `http://app.com/app_dev.php/login`!
+You can import some default data fixtures:
+
+``` bash
+$ php app/console doctrine:fixtures:load
+```
+
+and login at `http://app.com/app_dev.php/login` with `admin`/`admin`!
 
 
 ### Next Steps

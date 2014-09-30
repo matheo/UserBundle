@@ -342,7 +342,7 @@ created in Step 4.
 $ php app/console doctrine:schema:update --force
 ```
 
-You can import some default data fixtures:
+You can import some default data fixtures if you have `doctrine/doctrine-fixtures-bundle` installed:
 
 ``` bash
 $ php app/console doctrine:fixtures:load

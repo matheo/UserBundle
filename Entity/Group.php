@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Role\RoleInterface;
  * Group
  *
  * @ORM\Entity
- * @ORM\Table(name="group")
+ * @ORM\Table(name="fos_group")
  */
 class Group implements GroupInterface
 {
@@ -37,7 +37,7 @@ class Group implements GroupInterface
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Rol", inversedBy="groups", cascade={"persist"})
-     * @ORM\JoinTable(name="group_rol",
+     * @ORM\JoinTable(name="fos_group_rol",
      *      joinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="rol_id", referencedColumnName="id")}
      * )

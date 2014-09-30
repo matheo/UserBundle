@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\Role\RoleInterface;
  * Rol
  *
  * @Gedmo\Tree(type="nested")
- * @ORM\Table(name="rol")
+ * @ORM\Table(name="fos_rol")
  * @ORM\Entity(repositoryClass="Gedmo\Tree\Entity\Repository\NestedTreeRepository")
  */
 class Rol implements RoleInterface

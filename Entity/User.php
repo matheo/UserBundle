@@ -34,7 +34,7 @@ class User extends BaseUser implements CoreUser\EquatableInterface
 
     /**
      * @ORM\ManyToMany(targetEntity="Group")
-     * @ORM\JoinTable(name="group_user",
+     * @ORM\JoinTable(name="fos_group_user",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
      * )

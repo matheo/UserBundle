@@ -13,7 +13,7 @@ a database, then you're in the right place.
 
 ## Prerequisites
 
-This version of the bundle requires Symfony 2.4+.
+This version of the bundle requires Symfony 2.4+ and the Doctrine ORM.
 
 ## Installation
 

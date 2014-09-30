@@ -45,18 +45,6 @@ $ php composer.phar require matheo/user-bundle '~0.1@dev'
 
 Composer will install the bundle to your project's `vendor/matheo` directory.
 
-Packagist may not have the latest development copy of this bundle, in that case,
-you may add the repository to your composer.json:
-
-```
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "https://github.com/matheo/UserBundle"
-    }
-],
-```
-
 
 ### Step 2: Enable the bundles
 

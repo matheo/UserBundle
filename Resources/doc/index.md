@@ -19,29 +19,24 @@ This version of the bundle requires Symfony 2.4+, Doctrine ORM and PHP 5.4+ (Tra
 
 Installation is a quick 7 step process:
 
-1. Download Matheo/UserBundle using composer
-2. Enable the Bundle
+1. Download the bundles using composer
+2. Enable the bundles
 3. Customize your User class (optional)
 4. Configure your application's security.yml
-5. Configure FOSUserBundle
+5. Configure the bundles
 6. Import the routing
 7. Update your database
 
 ### Step 1: Download this UserBundle using composer
 
-Until this Bundle is released, you need to edit your composer.json `minimum-stability`:
+Unless your composer.json `minimum-stability` is `dev`, you will need to install these:
 
-```
-"minimum-stability": "dev"
+``` bash
+$ php composer.phar require friendsofsymfony/user-bundle '~2.0@dev'
+$ php composer.phar require stof/doctrine-extensions-bundle '~1.1@dev'
+$ php composer.phar require doctrine/doctrine-bundle '~1.3@dev'
 ```
 
-or include the bundle dependencies on your composer.json:
-
-```
-"friendsofsymfony/user-bundle": "~2.0@dev",
-"stof/doctrine-extensions-bundle": "~1.1@dev"
-```
-Also, you need to update the `doctrine/doctrine-bundle` to `~1.3@dev`.
 Then you can perform the installation:
 
 ``` bash
@@ -62,6 +57,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
+        new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
         new FOS\UserBundle\FOSUserBundle(),
         new Matheo\UserBundle\MatheoUserBundle(),
     );
@@ -258,7 +254,7 @@ security component [documentation](http://symfony.com/doc/current/book/security.
 > this UserBundle is configured in. You will use this in the next step.
 
 
-### Step 5: Configure FOSUserBundle
+### Step 5: Configure the bundles
 
 Now that you have properly configured your application's `security.yml` to work
 with this UserBundle, the next step is to configure the bundle to work with
@@ -268,6 +264,27 @@ Add the following configuration to your `config.yml`:
 
 ``` yaml
 # app/config/config.yml
+doctrine:
+    ...
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        mappings:
+            ...
+            FOSUserBundle: ~
+            MatheoUserBundle: ~
+            gedmo_tree:
+                type: annotation
+                prefix: Gedmo\Tree\Entity
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
+                alias: GedmoTree # this one is optional and will default to the name set for the mapping
+                is_bundle: false
+
+stof_doctrine_extensions:
+    default_locale: "%locale%"
+    orm:
+        default:
+            tree: true
+
 fos_user:
     db_driver: orm
     firewall_name: main
@@ -276,18 +293,6 @@ fos_user:
         group_class: Matheo\UserBundle\Entity\Group
 ```
 
-Or if you prefer XML:
-
-``` xml
-<!-- app/config/config.xml -->
-
-<fos_user:config
-    db-driver="orm"
-    firewall-name="main"
-    user-class="Matheo\UserBundle\Entity\User">
-    <group group-class="Matheo\UserBundle\Entity\Group" />
-</fos_user:config>
-```
 
 Only three configuration values are required to use the bundle:
 
@@ -345,6 +350,7 @@ $ php app/console doctrine:schema:update --force
 You can import some default data fixtures if you have `doctrine/doctrine-fixtures-bundle` installed:
 
 ``` bash
+$ php composer.phar require doctrine/doctrine-fixtures-bundle '2.2.*@dev'
 $ php app/console doctrine:fixtures:load
 ```
 

@@ -26,7 +26,7 @@ class RoleHierarchy implements RoleHierarchyInterface
     public function __construct(EntityManager $em)
     {
         /** @var \Gedmo\Tree\RepositoryUtilsInterface $repo */
-        $repo = $em->getRepository('UserBundle:Rol');
+        $repo = $em->getRepository('MatheoUserBundle:Rol');
 
         $tree = $repo->childrenHierarchy();
 

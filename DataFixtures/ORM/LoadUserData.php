@@ -49,16 +49,16 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
 
         foreach ($users as $user) {
             /** @var User $user */
-            $user = $userManager->createUser();
+            $record = $userManager->createUser();
 
-            $user
+            $record
                 ->setUsername($user['username'])
                 ->setPlainPassword($user['password'])
                 ->setEmail($user['email'])
                 ->addGroup($this->getReference($user['group']))
                 ->setEnabled(true);
 
-            $userManager->updateUser($user);
+            $userManager->updateUser($record);
         }
 
         // flush

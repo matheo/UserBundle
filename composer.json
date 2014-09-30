@@ -1,0 +1,31 @@
+{
+    "name": "matheo/user-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony Extended UserBundle",
+    "keywords": ["User management"],
+    "homepage": "https://github.com/matheo/UserBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mateo Tibaquirá",
+            "email": "nestormateo@gmail.com"
+        },
+        {
+            "name": "Contributors",
+            "homepage": "https://github.com/matheo/UserBundle/contributors"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.2",
+        "friendsofsymfony/user-bundle": "~2.0@dev"
+    },
+    "autoload": {
+        "psr-4": { "Matheo\\UserBundle\\": "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}

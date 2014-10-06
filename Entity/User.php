@@ -21,8 +21,6 @@ use Symfony\Component\Security\Core\Role\RoleInterface;
  */
 class User extends BaseUser implements CoreUser\EquatableInterface
 {
-    use TimestampableEntity;
-
     /**
      * @var integer $id
      *
@@ -45,6 +43,18 @@ class User extends BaseUser implements CoreUser\EquatableInterface
      * @var array
      */
     protected $roles;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $createdAt;
+
+    /**
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $updatedAt;
 
     /**
      * @var string
@@ -121,10 +131,6 @@ class User extends BaseUser implements CoreUser\EquatableInterface
     public function __construct()
     {
         parent::__construct();
-
-        // trait initialization
-        $this->setCreatedAt(new \DateTime());
-        $this->setUpdatedAt(new \DateTime());
     }
 
     /**
@@ -166,6 +172,52 @@ class User extends BaseUser implements CoreUser\EquatableInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Sets createdAt.
+     *
+     * @param  \DateTime $createdAt
+     * @return $this
+     */
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Returns createdAt.
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Sets updatedAt.
+     *
+     * @param  \DateTime $updatedAt
+     * @return $this
+     */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Returns updatedAt.
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 
     /**

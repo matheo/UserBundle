@@ -4,7 +4,7 @@ Matheo / UserBundle
 FOSUserBundle extension to have users connected to groups, and a hierarchy of roles attached to these groups only.
 The roles are manageable and retrieved from the database, in a nested-set tree supported by the DoctrineExtensions.
 
-This bundle requires Symfony 2.4+, Doctrine ORM and PHP 5.4+ (Traits).
+This bundle requires Symfony 2.4+ and Doctrine ORM.
 
 Documentation
 -------------

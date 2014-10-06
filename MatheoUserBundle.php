@@ -19,14 +19,14 @@ class MatheoUserBundle extends Bundle
         parent::build($container);
 
         // https://github.com/juanmf/UserBundle
-        $mappings = [
+        $mappings = array(
             // customize the mappings to disable the 'roles' field
             realpath(__DIR__ . '/Resources/config/doctrine/model') => 'FOS\UserBundle\Model',
-        ];
+        );
 
         $container->addCompilerPass(
             DoctrineOrmMappingsPass::createXmlMappingDriver(
-                $mappings, ['fos_user.model_manager_name'], 'fos_user.backend_type_orm'
+                $mappings, array('fos_user.model_manager_name'), 'fos_user.backend_type_orm'
             )
         );
     }

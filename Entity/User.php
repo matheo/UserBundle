@@ -402,7 +402,7 @@ class User extends BaseUser implements CoreUser\EquatableInterface
     public function getRoles()
     {
         if (!count($this->roles)) {
-            return [parent::ROLE_DEFAULT];
+            return array(parent::ROLE_DEFAULT);
         }
 
         return $this->roles;
@@ -413,7 +413,7 @@ class User extends BaseUser implements CoreUser\EquatableInterface
      */
     public function loadRoles()
     {
-        $this->roles = [];
+        $this->roles = array();
 
         /** @var Group $group */
         foreach ($this->getGroups() as $group) {

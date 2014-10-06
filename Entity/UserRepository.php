@@ -24,7 +24,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
     {
         $q = $this
             ->createQueryBuilder('u')
-            ->select(['u', 'g'])
+            ->select(array('u', 'g'))
             ->leftJoin('u.groups', 'g');
 
         foreach ($criteria as $fieldName => $value) {
@@ -48,7 +48,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
     {
         $q = $this
             ->createQueryBuilder('u')
-            ->select(['u', 'g', 'r'])
+            ->select(array('u', 'g', 'r'))
             ->leftJoin('u.groups', 'g')
             ->leftJoin('g.roles', 'r')
             ->where('u.username = :username OR u.email = :email')
@@ -94,7 +94,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
         /** @var User $user */
         return $this
             ->createQueryBuilder('u')
-            ->select(['u', 'g', 'r'])
+            ->select(array('u', 'g', 'r'))
             ->join('u.groups', 'g')
             ->leftJoin('g.roles', 'r')
             ->where('u.id = :id')

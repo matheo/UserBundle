@@ -40,17 +40,17 @@ class RoleHierarchy implements RoleHierarchyInterface
      */
     protected function buildTree($node)
     {
-        $children = [];
+        $children = array();
 
         foreach ($node['__children'] as $role) {
             $children[] = $role['role'];
             $this->buildTree($role);
         }
 
-        $this->tree[$node['role']] = [
+        $this->tree[$node['role']] = array(
             'name' => $node['name'],
             'children' => $children
-        ];
+        );
     }
 
     /**
@@ -58,7 +58,7 @@ class RoleHierarchy implements RoleHierarchyInterface
      */
     public function getReachableRoles(array $roles)
     {
-        $auth = [];
+        $auth = array();
 
         foreach ($roles as $role) {
             $role = ($role instanceof RoleInterface ? $role->getRole() : (string)$role);

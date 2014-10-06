@@ -24,12 +24,12 @@ class UserProvider extends BaseProvider implements AccountConnectorInterface, OA
         $setter_data = $setter.'Data';
 
         $username = $response->getUsername();
-        $user = $this->userManager->findUserBy([$this->getProperty($response) => $username]);
+        $user = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
 
         // when the user is new to the system or is registered with another account different to previous registration account (eg, first with facebook then with google)
         if (null === $user || null === $username) {
             // find by email in internal accounts
-            $user = $this->userManager->findUserBy(['emailCanonical' => $response->getEmail()]);
+            $user = $this->userManager->findUserBy(array('emailCanonical' => $response->getEmail()));
 
             if (null === $user ) { // a completely new account
 
@@ -103,7 +103,7 @@ class UserProvider extends BaseProvider implements AccountConnectorInterface, OA
 
         $username = $response->getUsername();
 
-        if (null !== $previousUser = $this->userManager->findUserBy([$property => $username])) {
+        if (null !== $previousUser = $this->userManager->findUserBy(array($property => $username))) {
             $previousUser->$setter_id(null);
             $previousUser->$setter_token(null);
             $this->userManager->updateUser($previousUser);

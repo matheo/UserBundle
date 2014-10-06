@@ -30,20 +30,20 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     public function load(ObjectManager $manager)
     {
-        $users = [
-            [
+        $users = array(
+            array(
                 'username' => 'webmaster',
                 'password' => 'webmaster',
                 'email' => 'webmaster@localhost',
                 'group' => 'group-su'
-            ],
-            [
+            ),
+            array(
                 'username' => 'admin',
                 'password' => 'admin',
                 'email' => 'admin@localhost',
                 'group' => 'group-adm'
-            ]
-        ];
+            )
+        );
 
         $userManager = $this->container->get('fos_user.user_manager');
 

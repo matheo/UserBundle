@@ -95,7 +95,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
         return $this
             ->createQueryBuilder('u')
             ->select(array('u', 'g', 'r'))
-            ->join('u.groups', 'g')
+            ->leftJoin('u.groups', 'g')
             ->leftJoin('g.roles', 'r')
             ->where('u.id = :id')
             ->setParameter('id', $user->getId())
